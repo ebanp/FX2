@@ -3,15 +3,17 @@ name: 'Deploy_Infra_FX2'
 on:
   push:
     branches: [ "main" ]
+
+env:
+  AWS_REGION: "AWS_REGION"
+  AWS_ACCESS_KEY: ${{ secret.AWS_ACCESS_KEY }}
+  AWS_SECRET_KEY: ${{ secret.AWS:SECRET_KEY }}  
+  CONFIG_DIRECTORY: "./"
     
 jobs:
   deploy:
     name: 'Terraform'
-    runs-on: ubuntu-latest
-    env:
-      AWS_REGION: "AWS_REGION"
-      AWS_ACCESS_KEY: ${{ secret.AWS_ACCESS_KEY }}
-      AWS_SECRET_KEY: ${{ secret.AWS:SECRET_KEY }}    
+    runs-on: ubuntu-latest  
     
     steps:
     - name: Check out the repo
